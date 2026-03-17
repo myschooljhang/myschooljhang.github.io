@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MySchool Jhang — Learn Without Boundaries | تعلیم بلا حدود</title>
+<meta name="description" content="Free online education for Grade 1–8 students in Jhang, Pakistan. Video lessons, quizzes, progress tracking. A Massab Farooq Initiative.">
+<meta property="og:title" content="MySchool Jhang — Learn Without Boundaries">
+<meta property="og:description" content="Free online education for Grade 1–8 students in Jhang, Pakistan.">
+<meta property="og:url" content="https://myschooljhang.github.io/myschool">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════ */
+:root {
+  --teal:       #0a5c52;
+  --teal-mid:   #127a6e;
+  --teal-light: #1fa090;
+  --teal-xlight:#e8f5f3;
+  --gold:       #c89a10;
+  --gold-bright:#f0c040;
+  --cream:      #faf6ef;
+  --warm-white: #fffdf8;
+  --charcoal:   #1c1c1a;
+  --text-body:  #2e2e2a;
+  --text-muted: #5a5a52;
+  --border:     rgba(10,92,82,0.12);
+  --shadow-sm:  0 2px 12px rgba(10,92,82,0.08);
+  --shadow-md:  0 6px 30px rgba(10,92,82,0.14);
+  --shadow-lg:  0 16px 56px rgba(10,92,82,0.20);
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+}
+
+/* ══════════════════════════════════════
+   RESET + BASE
+══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--warm-white);
+  color: var(--text-body);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ══════════════════════════════════════
+   URDU (RTL) MODE
+══════════════════════════════════════ */
+html[lang="ur"] {
+  direction: rtl;
+  font-family: 'Amiri', serif;
+}
+html[lang="ur"] body {
+  font-family: 'Amiri', serif;
+  font-size: 17px;
+}
+html[lang="ur"] .nav-links,
+html[lang="ur"] .nav-cta { flex-direction: row-reverse; }
+html[lang="ur"] .section-label { flex-direction: row-reverse; }
+html[lang="ur"] .section-label::before { display: none; }
+html[lang="ur"] .section-label::after {
+  content: '';
+  display: block; width: 20px; height: 2px;
+  background: var(--gold);
+}
+html[lang="ur"] .hero-left { padding: 80px 8vw 80px 5vw; }
+html[lang="ur"] .hero-stats { flex-direction: row-reverse; }
+html[lang="ur"] .footer-grid { direction: rtl; }
+html[lang="ur"] .why-features .why-card { text-align: right; }
+html[lang="ur"] .app-feat { flex-direction: row-reverse; }
+html[lang="ur"] .contact-item { flex-direction: row-reverse; }
+html[lang="ur"] .news-card { text-align: right; }
+
+/* Language-specific text visibility */
+.text-en { display: block; }
+.text-ur { display: none; }
+.inline-en { display: inline; }
+.inline-ur { display: none; }
+html[lang="ur"] .text-en { display: none; }
+html[lang="ur"] .text-ur { display: block; }
+html[lang="ur"] .inline-en { display: none; }
+html[lang="ur"] .inline-ur { display: inline; }
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw;
+  height: 70px;
+  background: rgba(255,253,248,0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: var(--shadow-md); }
+
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo-mark {
+  width: 40px; height: 40px;
+  background: var(--teal);
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold-bright);
+  font-family: 'Amiri', serif;
+  font-size: 24px; font-weight: 700; line-height: 1;
+  flex-shrink: 0;
+}
+.nav-logo-words { display: flex; flex-direction: column; }
+.nav-logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 700;
+  color: var(--teal); line-height: 1.1;
+}
+.nav-logo-sub {
+  font-size: 10px; font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 28px; list-style: none;
+}
+.nav-links a {
+  font-size: 13.5px; font-weight: 400; color: var(--charcoal);
+  transition: color 0.2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 2px; background: var(--teal);
+  transform: scaleX(0); transition: transform 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-right { display: flex; align-items: center; gap: 14px; }
+
+/* Lang toggle */
+.lang-toggle {
+  display: flex; align-items: center;
+  background: var(--teal-xlight);
+  border-radius: 100px;
+  padding: 3px;
+  gap: 0;
+  border: 1px solid var(--border);
+}
+.lang-btn {
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 12px; font-weight: 600;
+  cursor: pointer;
+  border: none; background: transparent;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.lang-btn.active {
+  background: var(--teal);
+  color: white;
+}
+.lang-btn.ur-btn { font-family: 'Amiri', serif; font-size: 14px; }
+
+.nav-cta { display: flex; gap: 10px; }
+.btn-outline {
+  padding: 8px 18px;
+  border: 1.5px solid var(--teal);
+  border-radius: var(--radius-sm);
+  background: transparent; color: var(--teal);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+  display: inline-flex; align-items: center;
+}
+.btn-outline:hover { background: var(--teal); color: white; }
+.btn-primary {
+  padding: 8px 18px;
+  border: 1.5px solid var(--teal);
+  border-radius: var(--radius-sm);
+  background: var(--teal); color: var(--gold-bright);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+  display: inline-flex; align-items: center;
+}
+.btn-primary:hover { background: var(--teal-mid); transform: translateY(-1px); }
+
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--charcoal); border-radius: 2px;
+  transition: all 0.3s;
+}
+.mobile-menu {
+  display: none; position: fixed;
+  top: 70px; left: 0; right: 0;
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 6vw 28px;
+  flex-direction: column; gap: 16px;
+  box-shadow: var(--shadow-md);
+  z-index: 999;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 15px; font-weight: 500;
+  color: var(--charcoal); padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu-actions {
+  display: flex; gap: 10px; padding-top: 8px;
+}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding-top: 70px;
+  position: relative; overflow: hidden;
+}
+.hero-orb-1 {
+  position: absolute; width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,160,23,0.08) 0%, transparent 70%);
+  top: 10%; right: -5%; pointer-events: none;
+}
+.hero-orb-2 {
+  position: absolute; width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(10,92,82,0.07) 0%, transparent 70%);
+  bottom: 5%; left: -5%; pointer-events: none;
+}
+.hero-grid-lines {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(10,92,82,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,92,82,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-left {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 5vw 80px 8vw;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(10,92,82,0.07);
+  border: 1px solid rgba(10,92,82,0.14);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 12px; font-weight: 500;
+  color: var(--teal); letter-spacing: 0.05em; text-transform: uppercase;
+  width: fit-content; margin-bottom: 28px;
+  animation: fadeUp 0.6s ease both;
+}
+.badge-pulse {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.hero-urdu-line {
+  font-family: 'Amiri', serif;
+  font-size: clamp(22px, 2.2vw, 32px);
+  color: var(--gold);
+  font-weight: 700; margin-bottom: 6px;
+  letter-spacing: 0.01em;
+  animation: fadeUp 0.6s 0.05s ease both;
+}
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 4.8vw, 70px);
+  font-weight: 900; line-height: 1.05;
+  color: var(--charcoal); margin-bottom: 22px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.hero-headline em { color: var(--teal); font-style: italic; }
+
+.hero-sub {
+  font-size: 16px; font-weight: 300; line-height: 1.8;
+  color: var(--text-muted); max-width: 440px;
+  margin-bottom: 40px;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+.hero-actions {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-bottom: 52px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.hero-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 34px;
+  background: var(--teal); color: var(--gold-bright);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: all 0.25s;
+  box-shadow: 0 6px 24px rgba(10,92,82,0.28);
+}
+.hero-btn-primary:hover { background: var(--teal-mid); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(10,92,82,0.34); }
+.hero-btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 28px;
+  background: white; color: var(--teal);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 500;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(10,92,82,0.2);
+  transition: all 0.25s;
+}
+.hero-btn-secondary:hover { border-color: var(--teal); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+
+.hero-stats {
+  display: flex; gap: 40px;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+.stat { }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px; font-weight: 700;
+  color: var(--teal); line-height: 1;
+}
+.stat-lbl {
+  font-size: 11px; font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-top: 5px;
+}
+
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 80px 7vw 80px 3vw;
+}
+.hero-visual { position: relative; width: 100%; max-width: 400px; }
+
+.hero-card {
+  background: var(--teal);
+  border-radius: var(--radius-xl);
+  padding: 34px;
+  color: white;
+  position: relative; overflow: hidden;
+  animation: fadeUp 0.7s 0.2s ease both;
+  box-shadow: 0 24px 64px rgba(10,92,82,0.38);
+}
+.hero-card::before {
+  content: 'م';
+  position: absolute; right: -14px; top: -18px;
+  font-family: 'Amiri', serif;
+  font-size: 180px; color: rgba(255,255,255,0.04);
+  line-height: 1; pointer-events: none;
+}
+.hero-card-pills {
+  display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 22px;
+}
+.pill {
+  padding: 4px 13px; border-radius: 100px;
+  background: rgba(255,255,255,0.1);
+  font-size: 11px; color: rgba(255,255,255,0.75);
+}
+.pill.active { background: var(--gold); color: var(--charcoal); font-weight: 600; }
+
+.hero-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700; margin-bottom: 4px;
+}
+.hero-card-sub { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 22px; }
+
+.prog-rows { display: flex; flex-direction: column; gap: 11px; }
+.prog-row { display: flex; align-items: center; gap: 12px; }
+.prog-lbl { font-size: 12px; color: rgba(255,255,255,0.65); min-width: 80px; }
+.prog-track { flex: 1; height: 5px; background: rgba(255,255,255,0.1); border-radius: 100px; }
+.prog-fill { height: 100%; border-radius: 100px; background: var(--gold-bright); }
+.prog-pct { font-size: 11px; color: rgba(255,255,255,0.5); min-width: 30px; text-align: right; }
+
+.floating-badge {
+  position: absolute;
+  background: white; border-radius: var(--radius-md);
+  padding: 12px 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  display: flex; align-items: center; gap: 10px;
+}
+.fb-1 { bottom: -22px; left: -28px; animation: floatAnim 3.2s ease-in-out infinite; }
+.fb-2 { top: -18px; right: -22px; animation: floatAnim 3.2s 1.6s ease-in-out infinite; }
+.fb-icon {
+  width: 36px; height: 36px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.fb-icon-a { background: rgba(10,92,82,0.1); }
+.fb-icon-b { background: rgba(212,160,23,0.12); }
+.fb-title { font-size: 13px; font-weight: 600; color: var(--charcoal); line-height: 1.2; }
+.fb-sub { font-size: 11px; color: var(--text-muted); }
+
+@keyframes floatAnim {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════
+   SECTION SHARED
+══════════════════════════════════════ */
+.section { padding: 100px 8vw; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--gold); margin-bottom: 14px;
+}
+.section-label::before {
+  content: ''; display: block; width: 22px; height: 2px; background: var(--gold);
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 3.2vw, 48px);
+  font-weight: 700; line-height: 1.15;
+  color: var(--charcoal); margin-bottom: 16px;
+}
+.section-title em { color: var(--teal); font-style: italic; }
+.section-desc {
+  font-size: 15.5px; font-weight: 300;
+  color: var(--text-muted); max-width: 560px; line-height: 1.8;
+}
+html[lang="ur"] .section-title { font-family: 'Amiri', serif; font-size: clamp(28px, 3vw, 44px); }
+html[lang="ur"] .section-desc { font-family: 'Amiri', serif; font-size: 17px; }
+
+/* ══════════════════════════════════════
+   NEWS & ANNOUNCEMENTS
+══════════════════════════════════════ */
+.news-section { background: var(--cream); }
+.news-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 52px; flex-wrap: wrap; gap: 20px;
+}
+.news-link-all {
+  font-size: 13px; font-weight: 600; color: var(--teal);
+  display: inline-flex; align-items: center; gap: 5px;
+  transition: gap 0.2s;
+}
+.news-link-all:hover { gap: 10px; }
+
+.news-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 20px;
+}
+.news-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.3s;
+  display: flex; flex-direction: column;
+}
+.news-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: rgba(10,92,82,0.2); }
+.news-card-featured {
+  grid-row: 1 / 3;
+  background: var(--teal);
+  border-color: transparent;
+}
+.news-card-featured:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(10,92,82,0.35); }
+.news-img {
+  width: 100%; aspect-ratio: 16/9;
+  background: rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px; position: relative;
+  overflow: hidden;
+}
+.news-img-featured {
+  background: rgba(255,255,255,0.05); aspect-ratio: 4/3;
+  font-size: 80px;
+}
+.news-img-stripe {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 20px,
+    rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 40px
+  );
+}
+.news-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+.news-body-featured { padding: 28px; }
+.news-tag {
+  display: inline-block;
+  padding: 3px 12px; border-radius: 100px;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+.tag-announcement { background: rgba(212,160,23,0.12); color: var(--gold); }
+.tag-event { background: rgba(10,92,82,0.09); color: var(--teal); }
+.tag-achievement { background: rgba(212,160,23,0.2); color: #8a6300; }
+.tag-announcement-white { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+.news-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 700; line-height: 1.3;
+  color: var(--charcoal); margin-bottom: 10px;
+}
+.news-title-featured { color: white; font-size: 22px; }
+.news-excerpt {
+  font-size: 13px; color: var(--text-muted);
+  line-height: 1.7; flex: 1;
+  margin-bottom: 16px;
+}
+.news-excerpt-featured { color: rgba(255,255,255,0.65); }
+.news-meta {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-top: auto;
+}
+.news-meta-featured { color: rgba(255,255,255,0.45); }
+.news-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-muted); }
+.news-dot-white { background: rgba(255,255,255,0.3); }
+.news-read-more {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: var(--gold-bright);
+  margin-top: 20px;
+  transition: gap 0.2s;
+}
+.news-read-more:hover { gap: 10px; }
+
+/* marquee ticker */
+.ticker-wrap {
+  background: var(--teal); padding: 10px 0; overflow: hidden;
+}
+.ticker-inner {
+  display: flex; gap: 60px; white-space: nowrap;
+  animation: ticker 28s linear infinite;
+}
+.ticker-item {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.85);
+  flex-shrink: 0;
+}
+.ticker-sep { color: var(--gold-bright); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ══════════════════════════════════════
+   WHY US
+══════════════════════════════════════ */
+.why-section { background: white; }
+.why-grid {
+  display: grid; grid-template-columns: 1fr 1.5fr;
+  gap: 72px; align-items: center; margin-top: 60px;
+}
+.why-features {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+}
+.why-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  transition: all 0.3s;
+}
+.why-card:hover { background: white; transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(10,92,82,0.2); }
+.why-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(10,92,82,0.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 14px;
+}
+.why-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-weight: 700; margin-bottom: 7px;
+}
+html[lang="ur"] .why-card h3 { font-family: 'Amiri', serif; font-size: 17px; }
+.why-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+.why-big-card {
+  background: var(--teal); border-radius: var(--radius-xl);
+  padding: 48px 44px; color: white;
+  position: relative; overflow: hidden;
+}
+.why-big-card::after {
+  content: '';
+  position: absolute; right: -60px; bottom: -60px;
+  width: 260px; height: 260px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.why-big-card::before {
+  content: '';
+  position: absolute; right: -30px; bottom: -30px;
+  width: 180px; height: 180px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.why-big-lbl {
+  font-size: 11px; color: var(--gold-bright);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 16px;
+}
+.why-big-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 700; line-height: 1.25;
+  margin-bottom: 16px;
+}
+html[lang="ur"] .why-big-card h2 { font-family: 'Amiri', serif; font-size: 28px; }
+.why-big-card p {
+  font-size: 14.5px; color: rgba(255,255,255,0.68);
+  line-height: 1.8; margin-bottom: 32px;
+}
+.why-big-card a {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-bright); color: var(--charcoal);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700; font-size: 14px;
+  padding: 12px 26px; border-radius: var(--radius-sm);
+  transition: all 0.2s; position: relative; z-index: 1;
+}
+.why-big-card a:hover { background: #f7d060; transform: translateY(-2px); }
+
+/* ══════════════════════════════════════
+   SUBJECTS
+══════════════════════════════════════ */
+.subjects-section { background: var(--cream); }
+.subjects-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-top: 56px;
+}
+.subj-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 18px; text-align: center;
+  transition: all 0.3s; display: block; color: inherit;
+}
+.subj-card:hover {
+  background: var(--teal); border-color: var(--teal);
+  transform: translateY(-6px); box-shadow: 0 18px 44px rgba(10,92,82,0.28);
+}
+.subj-card:hover .subj-name { color: white; }
+.subj-card:hover .subj-lbl { color: rgba(255,255,255,0.7); }
+.subj-icon { font-size: 38px; margin-bottom: 14px; display: block; line-height: 1; }
+.subj-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--charcoal); margin-bottom: 4px; transition: color 0.3s;
+}
+html[lang="ur"] .subj-name { font-family: 'Amiri', serif; font-size: 17px; }
+.subj-lbl { font-size: 12px; color: var(--text-muted); transition: color 0.3s; }
+
+/* ══════════════════════════════════════
+   GRADES BAND
+══════════════════════════════════════ */
+.grades-band { background: white; padding: 60px 8vw; }
+.grades-row { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+.grade-block {
+  flex: 1; min-width: 80px;
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 14px; text-align: center;
+  transition: all 0.25s; cursor: default;
+}
+.grade-block:hover {
+  background: var(--teal); border-color: var(--teal);
+  transform: translateY(-5px); box-shadow: 0 12px 32px rgba(10,92,82,0.22);
+}
+.grade-block:hover .grade-num { color: var(--gold-bright); }
+.grade-block:hover .grade-txt { color: rgba(255,255,255,0.65); }
+.grade-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px; font-weight: 900;
+  color: var(--teal); line-height: 1; transition: color 0.3s;
+}
+.grade-txt {
+  font-size: 10px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-top: 5px; transition: color 0.3s;
+}
+
+/* ══════════════════════════════════════
+   APP PROMO
+══════════════════════════════════════ */
+.app-section {
+  background: var(--charcoal); color: white;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  padding: 100px 8vw;
+}
+.app-lbl { font-size: 11px; color: var(--gold-bright); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+.app-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 2.8vw, 46px);
+  font-weight: 700; line-height: 1.15; margin-bottom: 14px;
+}
+.app-title em { color: var(--gold-bright); font-style: italic; }
+html[lang="ur"] .app-title { font-family: 'Amiri', serif; }
+.app-desc { font-size: 15px; color: rgba(255,255,255,0.58); line-height: 1.8; margin-bottom: 36px; }
+.app-feats { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+.app-feat { display: flex; align-items: flex-start; gap: 12px; }
+.app-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-bright); flex-shrink: 0; margin-top: 8px; }
+.app-feat-text { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.6; }
+.app-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-bright); color: var(--charcoal);
+  font-weight: 700; font-size: 15px;
+  padding: 14px 32px; border-radius: var(--radius-sm);
+  transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+}
+.app-btn:hover { background: #f7d060; transform: translateY(-2px); }
+
+.app-mockup {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--radius-xl); padding: 32px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.mockup-header {
+  display: flex; align-items: center; gap: 12px;
+  padding-bottom: 20px; margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.mockup-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--teal-mid);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.mockup-name { font-size: 14px; font-weight: 500; color: white; }
+.mockup-grade { font-size: 12px; color: rgba(255,255,255,0.38); }
+.mockup-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.mockup-item:last-child { border: none; }
+.mockup-ico {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.mockup-c-name { font-size: 13.5px; color: rgba(255,255,255,0.82); font-weight: 500; }
+.mockup-c-sub { font-size: 11px; color: rgba(255,255,255,0.38); }
+.mockup-badge {
+  margin-left: auto; font-size: 11px; flex-shrink: 0;
+  padding: 3px 10px; border-radius: 100px;
+  background: rgba(212,160,23,0.18); color: var(--gold-bright);
+  font-weight: 500;
+}
+.mockup-badge.done { background: rgba(26,160,144,0.18); color: #5fd9cc; }
+
+/* ══════════════════════════════════════
+   SOCIAL
+══════════════════════════════════════ */
+.social-section { background: var(--cream); }
+.social-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 18px; margin-top: 56px;
+}
+.social-card {
+  border-radius: var(--radius-lg);
+  padding: 26px 24px; display: block;
+  transition: all 0.3s; border: 1px solid transparent;
+  color: white;
+}
+.social-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.18); }
+.sc-fb { background: #1877f2; }
+.sc-tiktok { background: #010101; border-color: rgba(255,255,255,0.07); }
+.sc-ig { background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%); }
+.sc-gh { background: #1a1f27; border-color: rgba(255,255,255,0.07); }
+.sc-icon { font-size: 30px; margin-bottom: 14px; }
+.sc-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700; margin-bottom: 5px;
+}
+.sc-handle { font-size: 12px; opacity: 0.7; margin-bottom: 16px; }
+.sc-stat { font-size: 24px; font-weight: 700; font-family: 'Playfair Display', serif; }
+.sc-stat-lbl { font-size: 10px; opacity: 0.55; text-transform: uppercase; letter-spacing: 0.06em; }
+.github-row {
+  margin-top: 18px;
+  display: flex; align-items: center; gap: 18px;
+  padding: 22px 26px;
+  background: #1a1f27; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-lg); color: white;
+  transition: all 0.3s;
+}
+.github-row:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.22); }
+.github-row-right { margin-left: auto; font-size: 14px; color: rgba(255,255,255,0.4); }
+
+/* ══════════════════════════════════════
+   CONTACT
+══════════════════════════════════════ */
+.contact-section { background: white; }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.3fr;
+  gap: 72px; align-items: start; margin-top: 56px;
+}
+.contact-info { display: flex; flex-direction: column; gap: 24px; }
+.contact-item {
+  display: flex; align-items: flex-start; gap: 16px;
+}
+.contact-icon-wrap {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: var(--teal-xlight);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.contact-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--text-muted); text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 5px;
+}
+.contact-value {
+  font-size: 15px; font-weight: 500; color: var(--charcoal);
+  line-height: 1.4;
+}
+.contact-value a { color: var(--teal); }
+.contact-value a:hover { text-decoration: underline; }
+.contact-note { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
+.contact-map-card {
+  background: var(--teal);
+  border-radius: var(--radius-xl);
+  padding: 0; overflow: hidden;
+}
+.contact-map-top {
+  padding: 32px 36px;
+  color: white;
+}
+.contact-map-lbl {
+  font-size: 11px; color: var(--gold-bright);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 10px;
+}
+.contact-map-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  line-height: 1.2; margin-bottom: 8px; color: white;
+}
+html[lang="ur"] .contact-map-title { font-family: 'Amiri', serif; font-size: 24px; }
+.contact-map-addr { font-size: 14px; color: rgba(255,255,255,0.68); line-height: 1.6; }
+.contact-map-visual {
+  background: rgba(255,255,255,0.07);
+  height: 200px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.contact-map-visual::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 40px);
+}
+.map-pin {
+  font-size: 44px; animation: pinBounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+  position: relative; z-index: 1;
+}
+@keyframes pinBounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.contact-map-bottom {
+  padding: 20px 36px;
+  background: rgba(0,0,0,0.15);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.contact-map-bottom a {
+  font-size: 13px; font-weight: 600; color: var(--gold-bright);
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: gap 0.2s;
+}
+.contact-map-bottom a:hover { gap: 10px; }
+.contact-map-bottom span { font-size: 12px; color: rgba(255,255,255,0.45); }
+
+/* ══════════════════════════════════════
+   CTA BAND
+══════════════════════════════════════ */
+.cta-band {
+  background: var(--teal);
+  padding: 80px 8vw;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 40px; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+}
+.cta-band::before {
+  content: 'تعلیم';
+  position: absolute; right: 6vw; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Amiri', serif; font-size: 200px;
+  color: rgba(255,255,255,0.04); pointer-events: none; line-height: 1;
+}
+.cta-band-lbl {
+  font-size: 11px; color: var(--gold-bright);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 10px;
+}
+.cta-band-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 2.8vw, 42px);
+  font-weight: 700; color: white; line-height: 1.2;
+}
+html[lang="ur"] .cta-band-title { font-family: 'Amiri', serif; }
+.cta-band-title em { color: var(--gold-bright); font-style: italic; }
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+.cta-btn-main {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 36px;
+  background: var(--gold-bright); color: var(--charcoal);
+  font-weight: 700; font-size: 15px;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.cta-btn-main:hover { background: #f7d060; transform: translateY(-2px); }
+.cta-btn-sec {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 28px;
+  background: transparent; color: rgba(255,255,255,0.82);
+  font-weight: 500; font-size: 15px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(255,255,255,0.28);
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.cta-btn-sec:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.55); }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: var(--charcoal);
+  color: rgba(255,255,255,0.55);
+  padding: 72px 8vw 36px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 52px; margin-bottom: 52px;
+}
+.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.footer-logo-mark {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--teal); color: var(--gold-bright);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Amiri', serif; font-size: 22px; font-weight: 700;
+}
+.footer-logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700; color: white;
+}
+.footer-logo-sub { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; }
+.footer-tagline { font-size: 13px; line-height: 1.75; margin-bottom: 22px; }
+.footer-addr { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 22px; }
+.footer-socials { display: flex; gap: 8px; }
+.footer-soc-btn {
+  width: 34px; height: 34px; border-radius: 9px;
+  background: rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: rgba(255,255,255,0.5);
+  transition: all 0.2s; border: 1px solid rgba(255,255,255,0.05);
+}
+.footer-soc-btn:hover { background: var(--teal); color: white; border-color: var(--teal); }
+.footer-col-h {
+  font-size: 11px; font-weight: 700; color: white;
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 13px; color: rgba(255,255,255,0.48);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold-bright); }
+.footer-bottom {
+  padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+.footer-copy strong { color: var(--gold); font-weight: 600; }
+
+/* ══════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .news-grid { grid-template-columns: 1fr 1fr; }
+  .news-card-featured { grid-row: auto; }
+  .why-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding-bottom: 60px; }
+  .hero-right { display: none; }
+  .hero-left { padding: 60px 6vw 40px; }
+  .subjects-grid { grid-template-columns: repeat(2, 1fr); }
+  .app-section { grid-template-columns: 1fr; gap: 48px; }
+  .social-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .section { padding: 72px 6vw; }
+  .grades-band { padding: 52px 6vw; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+}
+@media (max-width: 600px) {
+  .news-grid { grid-template-columns: 1fr; }
+  .subjects-grid { grid-template-columns: repeat(2, 1fr); }
+  .social-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .why-features { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .cta-band { text-align: center; justify-content: center; }
+  .cta-band::before { display: none; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .grades-row { gap: 8px; }
+  .grade-block { min-width: 64px; }
+  .lang-toggle { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-mark">م</div>
+    <div class="nav-logo-words">
+      <div class="nav-logo-name">
+        <span class="inline-en">MySchool Jhang</span>
+        <span class="inline-ur">مائی اسکول جھنگ</span>
+      </div>
+      <div class="nav-logo-sub">
+        <span class="inline-en">Jhang, Pakistan</span>
+        <span class="inline-ur">جھنگ، پاکستان</span>
+      </div>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#news"><span class="inline-en">News</span><span class="inline-ur">خبریں</span></a></li>
+    <li><a href="#subjects"><span class="inline-en">Subjects</span><span class="inline-ur">مضامین</span></a></li>
+    <li><a href="#app"><span class="inline-en">App</span><span class="inline-ur">ایپ</span></a></li>
+    <li><a href="#contact"><span class="inline-en">Contact</span><span class="inline-ur">رابطہ</span></a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn ur-btn" id="btn-ur" onclick="setLang('ur')">اردو</button>
+    </div>
+    <div class="nav-cta">
+      <a href="https://massabfarooq.pythonanywhere.com/login/" class="btn-outline" target="_blank">
+        <span class="inline-en">Sign In</span><span class="inline-ur">لاگ ان</span>
+      </a>
+      <a href="https://massabfarooq.pythonanywhere.com/register/" class="btn-primary" target="_blank">
+        <span class="inline-en">Join Free</span><span class="inline-ur">مفت شامل ہوں</span>
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#news" onclick="toggleMenu()"><span class="inline-en">News & Announcements</span><span class="inline-ur">خبریں و اعلانات</span></a>
+  <a href="#subjects" onclick="toggleMenu()"><span class="inline-en">Subjects</span><span class="inline-ur">مضامین</span></a>
+  <a href="#app" onclick="toggleMenu()"><span class="inline-en">Learning App</span><span class="inline-ur">تعلیمی ایپ</span></a>
+  <a href="#contact" onclick="toggleMenu()"><span class="inline-en">Contact Us</span><span class="inline-ur">ہم سے رابطہ کریں</span></a>
+  <div class="mobile-menu-actions">
+    <a href="https://massabfarooq.pythonanywhere.com/login/" class="btn-outline" target="_blank">
+      <span class="inline-en">Sign In</span><span class="inline-ur">لاگ ان</span>
+    </a>
+    <a href="https://massabfarooq.pythonanywhere.com/register/" class="btn-primary" target="_blank">
+      <span class="inline-en">Join Free</span><span class="inline-ur">مفت شامل ہوں</span>
+    </a>
+  </div>
+  <!-- Mobile lang toggle -->
+  <div class="lang-toggle" style="align-self: flex-start;">
+    <button class="lang-btn active" id="btn-en-m" onclick="setLang('en')">EN</button>
+    <button class="lang-btn ur-btn" id="btn-ur-m" onclick="setLang('ur')">اردو</button>
+  </div>
+</div>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker-wrap" style="margin-top: 70px;">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item"><span class="ticker-sep">📢</span> New courses added for Grade 6, 7 &amp; 8 — Register now!</span>
+    <span class="ticker-item"><span class="ticker-sep">🏆</span> Congratulations to all students who completed Term 1 quizzes</span>
+    <span class="ticker-item"><span class="ticker-sep">🎓</span> 34+ courses now live across all 8 grades</span>
+    <span class="ticker-item"><span class="ticker-sep">📱</span> Access your learning portal at massabfarooq.pythonanywhere.com</span>
+    <span class="ticker-item"><span class="ticker-sep">📍</span> Visit us: 27 Lalazar, Satellite Town, Jhang</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><span class="ticker-sep">📢</span> New courses added for Grade 6, 7 &amp; 8 — Register now!</span>
+    <span class="ticker-item"><span class="ticker-sep">🏆</span> Congratulations to all students who completed Term 1 quizzes</span>
+    <span class="ticker-item"><span class="ticker-sep">🎓</span> 34+ courses now live across all 8 grades</span>
+    <span class="ticker-item"><span class="ticker-sep">📱</span> Access your learning portal at massabfarooq.pythonanywhere.com</span>
+    <span class="ticker-item"><span class="ticker-sep">📍</span> Visit us: 27 Lalazar, Satellite Town, Jhang</span>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-orb-1"></div>
+  <div class="hero-orb-2"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="badge-pulse"></div>
+      <span class="inline-en">🇵🇰 Serving Jhang &amp; Beyond · Free Forever</span>
+      <span class="inline-ur">🇵🇰 جھنگ اور اس سے آگے · ہمیشہ مفت</span>
+    </div>
+
+    <div class="hero-urdu-line">
+      <span class="inline-en">تعلیم بلا حدود</span>
+      <span class="inline-ur">Learn Without Boundaries</span>
+    </div>
+
+    <h1 class="hero-headline">
+      <span class="inline-en">Learn Without <em>Boundaries.</em></span>
+      <span class="inline-ur">تعلیم بلا <em>حدود۔</em></span>
+    </h1>
+
+    <p class="hero-sub">
+      <span class="text-en">Free online education for Grade 1–8 students across Jhang. Video lessons, quizzes, and progress tracking — all from home, all at no cost.</span>
+      <span class="text-ur">جھنگ کے گریڈ 1 تا 8 کے طلبا کے لیے مفت آنلائن تعلیم۔ ویڈیو سبق، کوئز اور ترقی کی نگرانی — گھر سے، بالکل مفت۔</span>
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://massabfarooq.pythonanywhere.com/register/" class="hero-btn-primary" target="_blank">
+        <span class="inline-en">Start Learning Free →</span>
+        <span class="inline-ur">مفت سیکھنا شروع کریں ←</span>
+      </a>
+      <a href="#app" class="hero-btn-secondary">
+        <span class="inline-en">Explore the App</span>
+        <span class="inline-ur">ایپ دیکھیں</span>
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">34+</div>
+        <div class="stat-lbl"><span class="inline-en">Courses</span><span class="inline-ur">کورسز</span></div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-lbl"><span class="inline-en">Subjects</span><span class="inline-ur">مضامین</span></div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1–8</div>
+        <div class="stat-lbl"><span class="inline-en">Grades</span><span class="inline-ur">گریڈ</span></div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Free</div>
+        <div class="stat-lbl"><span class="inline-en">Always</span><span class="inline-ur">ہمیشہ</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-pills">
+          <span class="pill"><span class="inline-en">Grade 1</span><span class="inline-ur">گریڈ 1</span></span>
+          <span class="pill"><span class="inline-en">Grade 3</span><span class="inline-ur">گریڈ 3</span></span>
+          <span class="pill active"><span class="inline-en">Grade 5</span><span class="inline-ur">گریڈ 5</span></span>
+          <span class="pill"><span class="inline-en">Grade 8</span><span class="inline-ur">گریڈ 8</span></span>
+        </div>
+        <div class="hero-card-title">
+          <span class="inline-en">Mathematics</span>
+          <span class="inline-ur">ریاضی</span>
+        </div>
+        <div class="hero-card-sub">
+          <span class="inline-en">Chapter 4 — Fractions &amp; Decimals</span>
+          <span class="inline-ur">باب 4 — کسور و اعشاریہ</span>
+        </div>
+        <div class="prog-rows">
+          <div class="prog-row">
+            <span class="prog-lbl"><span class="inline-en">Video Lessons</span><span class="inline-ur">ویڈیو سبق</span></span>
+            <div class="prog-track"><div class="prog-fill" style="width:75%"></div></div>
+            <span class="prog-pct">75%</span>
+          </div>
+          <div class="prog-row">
+            <span class="prog-lbl"><span class="inline-en">Quizzes</span><span class="inline-ur">کوئز</span></span>
+            <div class="prog-track"><div class="prog-fill" style="width:58%"></div></div>
+            <span class="prog-pct">58%</span>
+          </div>
+          <div class="prog-row">
+            <span class="prog-lbl"><span class="inline-en">Overall</span><span class="inline-ur">مجموعی</span></span>
+            <div class="prog-track"><div class="prog-fill" style="width:66%"></div></div>
+            <span class="prog-pct">66%</span>
+          </div>
+        </div>
+      </div>
+      <div class="floating-badge fb-1">
+        <div class="fb-icon fb-icon-a">🏆</div>
+        <div>
+          <div class="fb-title"><span class="inline-en">Quiz Passed!</span><span class="inline-ur">کوئز پاس!</span></div>
+          <div class="fb-sub"><span class="inline-en">Science · Grade 5</span><span class="inline-ur">سائنس · گریڈ 5</span></div>
+        </div>
+      </div>
+      <div class="floating-badge fb-2">
+        <div class="fb-icon fb-icon-b">✨</div>
+        <div>
+          <div class="fb-title"><span class="inline-en">New Lesson</span><span class="inline-ur">نیا سبق</span></div>
+          <div class="fb-sub"><span class="inline-en">Urdu · Chapter 3</span><span class="inline-ur">اردو · باب 3</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWS & ANNOUNCEMENTS ══ -->
+<section class="section news-section" id="news">
+  <div class="news-header">
+    <div>
+      <div class="section-label">
+        <span class="inline-en">News & Announcements</span>
+        <span class="inline-ur">خبریں و اعلانات</span>
+      </div>
+      <h2 class="section-title">
+        <span class="inline-en">Stay <em>informed</em></span>
+        <span class="inline-ur">باخبر <em>رہیں</em></span>
+      </h2>
+    </div>
+    <a href="https://www.facebook.com/MySchoolJhang/" target="_blank" class="news-link-all">
+      <span class="inline-en">All updates on Facebook →</span>
+      <span class="inline-ur">فیسبوک پر تمام اپڈیٹس ←</span>
+    </a>
+  </div>
+
+  <div class="news-grid">
+    <!-- Featured card -->
+    <div class="news-card news-card-featured reveal">
+      <div class="news-img news-img-featured">
+        🎓
+        <div class="news-img-stripe"></div>
+      </div>
+      <div class="news-body news-body-featured" style="flex:1; display:flex; flex-direction:column;">
+        <span class="news-tag tag-announcement-white">
+          <span class="inline-en">📢 Announcement</span>
+          <span class="inline-ur">📢 اعلان</span>
+        </span>
+        <div class="news-title news-title-featured">
+          <span class="text-en">New Courses Launched for Grade 6, 7 &amp; 8 — Enrol Now!</span>
+          <span class="text-ur">گریڈ 6، 7 اور 8 کے لیے نئے کورسز شروع — ابھی داخلہ لیں!</span>
+        </div>
+        <div class="news-excerpt news-excerpt-featured">
+          <span class="text-en">We're thrilled to announce that full course content for Grades 6, 7 and 8 is now live on the learning portal. Students can access video lessons, chapter quizzes, and progress tracking across all subjects — completely free.</span>
+          <span class="text-ur">ہمیں خوشی ہے کہ گریڈ 6، 7 اور 8 کا مکمل کورس مواد اب پورٹل پر دستیاب ہے۔ تمام مضامین میں ویڈیو سبق، کوئز اور ترقی کی نگرانی مفت دستیاب ہے۔</span>
+        </div>
+        <a href="https://massabfarooq.pythonanywhere.com/register/" target="_blank" class="news-read-more">
+          <span class="inline-en">Enrol Free →</span>
+          <span class="inline-ur">مفت داخلہ ←</span>
+        </a>
+        <div class="news-meta news-meta-featured" style="margin-top: auto; padding-top: 16px;">
+          <span class="inline-en">March 2026</span>
+          <span class="inline-ur">مارچ 2026</span>
+          <span class="news-dot news-dot-white"></span>
+          <span class="inline-en">MySchool Jhang</span>
+          <span class="inline-ur">مائی اسکول جھنگ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="news-card reveal">
+      <div class="news-img" style="font-size:44px;">🏆</div>
+      <div class="news-body">
+        <span class="news-tag tag-achievement">
+          <span class="inline-en">🏆 Achievement</span>
+          <span class="inline-ur">🏆 کامیابی</span>
+        </span>
+        <div class="news-title">
+          <span class="text-en">Students Celebrate Term 1 Quiz Results</span>
+          <span class="text-ur">طلبا نے پہلی مدت کے کوئز نتائج منائے</span>
+        </div>
+        <div class="news-excerpt">
+          <span class="text-en">Congratulations to all students who completed their Term 1 quizzes. Score reports are now available on your student dashboard.</span>
+          <span class="text-ur">تمام طلبا کو مبارکباد جنہوں نے پہلی مدت کے کوئز مکمل کیے۔ نتائج ڈیش بورڈ پر دستیاب ہیں۔</span>
+        </div>
+        <div class="news-meta">
+          <span class="inline-en">Feb 2026</span>
+          <span class="inline-ur">فروری 2026</span>
+          <span class="news-dot"></span>
+          <span class="inline-en">Academics</span>
+          <span class="inline-ur">تعلیم</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="news-card reveal">
+      <div class="news-img" style="font-size:44px;">📱</div>
+      <div class="news-body">
+        <span class="news-tag tag-event">
+          <span class="inline-en">🔧 Update</span>
+          <span class="inline-ur">🔧 اپڈیٹ</span>
+        </span>
+        <div class="news-title">
+          <span class="text-en">Portal Upgrade: Faster Quizzes &amp; Better Progress Tracking</span>
+          <span class="text-ur">پورٹل اپگریڈ: تیز کوئز اور بہتر پیشرفت نگرانی</span>
+        </div>
+        <div class="news-excerpt">
+          <span class="text-en">The learning portal has been updated with improved quiz performance, detailed score breakdowns, and a new grade-wise announcement board.</span>
+          <span class="text-ur">پورٹل کو بہتر کوئز، تفصیلی نتائج اور گریڈ وار اعلان بورڈ کے ساتھ اپڈیٹ کر دیا گیا ہے۔</span>
+        </div>
+        <div class="news-meta">
+          <span class="inline-en">Jan 2026</span>
+          <span class="inline-ur">جنوری 2026</span>
+          <span class="news-dot"></span>
+          <span class="inline-en">Technology</span>
+          <span class="inline-ur">ٹیکنالوجی</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="news-card reveal" style="grid-column: 2 / 4;">
+      <div style="display:flex; flex-direction: row; height: 100%;">
+        <div class="news-img" style="width:160px; height:auto; font-size:44px; aspect-ratio:unset; flex-shrink:0; border-radius: 0;">🗓️</div>
+        <div class="news-body" style="flex:1;">
+          <span class="news-tag tag-event">
+            <span class="inline-en">📅 Event</span>
+            <span class="inline-ur">📅 تقریب</span>
+          </span>
+          <div class="news-title">
+            <span class="text-en">Annual Prize Distribution — Coming Soon</span>
+            <span class="text-ur">سالانہ تقسیم انعامات — جلد آ رہی ہے</span>
+          </div>
+          <div class="news-excerpt">
+            <span class="text-en">Our annual prize distribution ceremony will recognise top performers across all grades. Stay tuned on our Facebook page for date and venue announcements.</span>
+            <span class="text-ur">سالانہ تقریب میں تمام گریڈ کے نمایاں طلبا کو خراج تحسین پیش کیا جائے گا۔ تاریخ اور مقام کے لیے فیسبوک فالو کریں۔</span>
+          </div>
+          <div class="news-meta">
+            <span class="inline-en">Coming Soon · 2026</span>
+            <span class="inline-ur">جلد آنے والا · 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY US ══ -->
+<section class="section why-section" id="about">
+  <div class="section-label">
+    <span class="inline-en">Why MySchool Jhang</span>
+    <span class="inline-ur">مائی اسکول جھنگ کیوں؟</span>
+  </div>
+  <h2 class="section-title">
+    <span class="inline-en">Education for <em>everyone</em></span>
+    <span class="inline-ur">سب کے لیے <em>تعلیم</em></span>
+  </h2>
+  <p class="section-desc">
+    <span class="text-en">We believe every child in Jhang deserves world-class learning resources — regardless of background or income.</span>
+    <span class="text-ur">ہمارا یقین ہے کہ جھنگ کا ہر بچہ عالمی معیار کے تعلیمی وسائل کا حق رکھتا ہے — چاہے پس منظر کچھ بھی ہو۔</span>
+  </p>
+
+  <div class="why-grid">
+    <div class="why-features">
+      <div class="why-card reveal">
+        <div class="why-icon">🎬</div>
+        <h3><span class="inline-en">Video Lessons</span><span class="inline-ur">ویڈیو سبق</span></h3>
+        <p>
+          <span class="text-en">YouTube-embedded lessons from qualified teachers, organised by grade and subject.</span>
+          <span class="text-ur">ماہر اساتذہ کے یوٹیوب سبق، گریڈ اور مضمون کے مطابق ترتیب دیے گئے۔</span>
+        </p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">📝</div>
+        <h3><span class="inline-en">Quizzes &amp; Tests</span><span class="inline-ur">کوئز و امتحان</span></h3>
+        <p>
+          <span class="text-en">Timed quizzes with instant results and detailed explanations for every answer.</span>
+          <span class="text-ur">وقت کے ساتھ کوئز، فوری نتائج اور ہر جواب کی تفصیلی وضاحت۔</span>
+        </p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">📊</div>
+        <h3><span class="inline-en">Progress Tracking</span><span class="inline-ur">پیشرفت نگرانی</span></h3>
+        <p>
+          <span class="text-en">See completed lessons, quiz scores, and course progress — all in one dashboard.</span>
+          <span class="text-ur">مکمل سبق، کوئز اسکور اور کورس ترقی ایک ہی ڈیش بورڈ پر دیکھیں۔</span>
+        </p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🔐</div>
+        <h3><span class="inline-en">Safe &amp; Secure</span><span class="inline-ur">محفوظ ماحول</span></h3>
+        <p>
+          <span class="text-en">Student accounts with parent info. A safe, trusted environment for all learners.</span>
+          <span class="text-ur">والدین کی معلومات کے ساتھ طالب علم اکاؤنٹ۔ تمام سیکھنے والوں کے لیے محفوظ۔</span>
+        </p>
+      </div>
+    </div>
+    <div class="why-big-card reveal">
+      <div class="why-big-lbl">
+        <span class="inline-en">A Massab Farooq Initiative</span>
+        <span class="inline-ur">مصعب فاروق کا ادارہ</span>
+      </div>
+      <h2>
+        <span class="text-en">"Passionate learners, shaping the future"</span>
+        <span class="text-ur">"پرجوش سیکھنے والے، مستقبل کی تشکیل"</span>
+      </h2>
+      <p>
+        <span class="text-en">MySchool Jhang was created to bridge the education gap for students in Jhang and beyond. With over 2,300 Facebook followers and a live app, we're building something meaningful — one lesson at a time.</span>
+        <span class="text-ur">مائی اسکول جھنگ جھنگ اور اس سے آگے کے طلبا کے لیے تعلیمی فرق کو ختم کرنے کے لیے بنایا گیا۔ 2300 سے زیادہ فالوورز کے ساتھ، ہم کچھ بامعنی بنا رہے ہیں۔</span>
+      </p>
+      <a href="https://massabfarooq.pythonanywhere.com/register/" target="_blank">
+        <span class="inline-en">Join the community →</span>
+        <span class="inline-ur">کمیونٹی میں شامل ہوں ←</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SUBJECTS ══ -->
+<section class="section subjects-section" id="subjects">
+  <div class="section-label">
+    <span class="inline-en">Curriculum</span>
+    <span class="inline-ur">نصاب</span>
+  </div>
+  <h2 class="section-title">
+    <span class="inline-en">All core <em>subjects covered</em></span>
+    <span class="inline-ur">تمام اہم <em>مضامین شامل</em></span>
+  </h2>
+  <p class="section-desc">
+    <span class="text-en">Pakistan's national curriculum, Grade 1 through 8, taught by qualified educators.</span>
+    <span class="text-ur">پاکستان کا قومی نصاب، گریڈ 1 تا 8، قابل اساتذہ کی تدریس۔</span>
+  </p>
+  <div class="subjects-grid">
+    <a href="https://massabfarooq.pythonanywhere.com/" class="subj-card reveal" target="_blank">
+      <span class="subj-icon">🔢</span>
+      <div class="subj-name"><span class="inline-en">Mathematics</span><span class="inline-ur">ریاضی</span></div>
+      <div class="subj-lbl"><span class="inline-en">Numbers, Geometry, Algebra</span><span class="inline-ur">اعداد، ہندسہ، الجبرا</span></div>
+    </a>
+    <a href="https://massabfarooq.pythonanywhere.com/" class="subj-card reveal" target="_blank">
+      <span class="subj-icon">🔬</span>
+      <div class="subj-name"><span class="inline-en">Science</span><span class="inline-ur">سائنس</span></div>
+      <div class="subj-lbl"><span class="inline-en">Physics, Biology, Chemistry</span><span class="inline-ur">طبیعات، حیاتیات، کیمیا</span></div>
+    </a>
+    <a href="https://massabfarooq.pythonanywhere.com/" class="subj-card reveal" target="_blank">
+      <span class="subj-icon">🅰️</span>
+      <div class="subj-name"><span class="inline-en">English</span><span class="inline-ur">انگریزی</span></div>
+      <div class="subj-lbl"><span class="inline-en">Reading, Writing, Grammar</span><span class="inline-ur">پڑھنا، لکھنا، گرامر</span></div>
+    </a>
+    <a href="https://massabfarooq.pythonanywhere.com/" class="subj-card reveal" target="_blank">
+      <span class="subj-icon" style="font-family:'Amiri',serif;font-size:28px;font-weight:700;color:var(--teal);display:block;margin-bottom:14px;line-height:1.2;">اردو</span>
+      <div class="subj-name"><span class="inline-en">Urdu</span><span class="inline-ur">اردو</span></div>
+      <div class="subj-lbl"><span class="inline-en">Qaida, Grammar, Composition</span><span class="inline-ur">قاعدہ، گرامر، انشاء</span></div>
+    </a>
+    <a href="https://massabfarooq.pythonanywhere.com/" class="subj-card reveal" target="_blank">
+      <span class="subj-icon">☪️</span>
+      <div class="subj-name"><span class="inline-en">Islamiat</span><span class="inline-ur">اسلامیات</span></div>
+      <div class="subj-lbl"><span class="inline-en">Quran, Hadith, Seerah</span><span class="inline-ur">قرآن، حدیث، سیرت</span></div>
+    </a>
+    <a href="https://massabfarooq.pythonanywhere.com/" class="subj-card reveal" target="_blank">
+      <span class="subj-icon">🗺️</span>
+      <div class="subj-name"><span class="inline-en">Social Studies</span><span class="inline-ur">معاشرتی علوم</span></div>
+      <div class="subj-lbl"><span class="inline-en">History, Geography, Civics</span><span class="inline-ur">تاریخ، جغرافیہ، شہریت</span></div>
+    </a>
+    <a href="https://massabfarooq.pythonanywhere.com/" class="subj-card reveal" target="_blank">
+      <span class="subj-icon">💻</span>
+      <div class="subj-name"><span class="inline-en">Computer</span><span class="inline-ur">کمپیوٹر</span></div>
+      <div class="subj-lbl"><span class="inline-en">Digital Literacy, Basics</span><span class="inline-ur">ڈیجیٹل خواندگی، بنیادی</span></div>
+    </a>
+    <a href="https://massabfarooq.pythonanywhere.com/" class="subj-card reveal" target="_blank">
+      <span class="subj-icon">🎨</span>
+      <div class="subj-name"><span class="inline-en">Art</span><span class="inline-ur">آرٹ</span></div>
+      <div class="subj-lbl"><span class="inline-en">Drawing, Craft, Design</span><span class="inline-ur">ڈرائنگ، دستکاری، ڈیزائن</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ GRADES ══ -->
+<div class="grades-band">
+  <div class="section-label">
+    <span class="inline-en">Grade Range</span>
+    <span class="inline-ur">گریڈ رینج</span>
+  </div>
+  <h2 class="section-title" style="margin-bottom: 0;">
+    <span class="inline-en">From <em>Grade 1 to 8</em></span>
+    <span class="inline-ur">گریڈ <em>1 تا 8</em></span>
+  </h2>
+  <div class="grades-row">
+    <div class="grade-block reveal"><div class="grade-num">1</div><div class="grade-txt"><span class="inline-en">Grade</span><span class="inline-ur">گریڈ</span></div></div>
+    <div class="grade-block reveal"><div class="grade-num">2</div><div class="grade-txt"><span class="inline-en">Grade</span><span class="inline-ur">گریڈ</span></div></div>
+    <div class="grade-block reveal"><div class="grade-num">3</div><div class="grade-txt"><span class="inline-en">Grade</span><span class="inline-ur">گریڈ</span></div></div>
+    <div class="grade-block reveal"><div class="grade-num">4</div><div class="grade-txt"><span class="inline-en">Grade</span><span class="inline-ur">گریڈ</span></div></div>
+    <div class="grade-block reveal"><div class="grade-num">5</div><div class="grade-txt"><span class="inline-en">Grade</span><span class="inline-ur">گریڈ</span></div></div>
+    <div class="grade-block reveal"><div class="grade-num">6</div><div class="grade-txt"><span class="inline-en">Grade</span><span class="inline-ur">گریڈ</span></div></div>
+    <div class="grade-block reveal"><div class="grade-num">7</div><div class="grade-txt"><span class="inline-en">Grade</span><span class="inline-ur">گریڈ</span></div></div>
+    <div class="grade-block reveal"><div class="grade-num">8</div><div class="grade-txt"><span class="inline-en">Grade</span><span class="inline-ur">گریڈ</span></div></div>
+  </div>
+</div>
+
+<!-- ══ APP ══ -->
+<section class="app-section" id="app">
+  <div>
+    <div class="app-lbl">
+      <span class="inline-en">Online Learning Portal</span>
+      <span class="inline-ur">آنلائن تعلیمی پورٹل</span>
+    </div>
+    <h2 class="app-title">
+      <span class="text-en">Your school, in your <em>pocket</em></span>
+      <span class="text-ur">آپ کا اسکول، آپ کی <em>جیب میں</em></span>
+    </h2>
+    <p class="app-desc">
+      <span class="text-en">The MySchool Jhang learning portal brings your entire curriculum online — free for every student in Jhang and across Pakistan.</span>
+      <span class="text-ur">مائی اسکول جھنگ پورٹل آپ کا مکمل نصاب آنلائن لاتا ہے — جھنگ اور پاکستان بھر کے ہر طالب علم کے لیے مفت۔</span>
+    </p>
+    <div class="app-feats">
+      <div class="app-feat">
+        <div class="app-dot"></div>
+        <div class="app-feat-text">
+          <span class="text-en">Watch video lessons from qualified teachers, by grade and subject</span>
+          <span class="text-ur">گریڈ اور مضمون کے مطابق ماہر اساتذہ کے ویڈیو سبق دیکھیں</span>
+        </div>
+      </div>
+      <div class="app-feat">
+        <div class="app-dot"></div>
+        <div class="app-feat-text">
+          <span class="text-en">Take timed quizzes with instant results and detailed explanations</span>
+          <span class="text-ur">وقت کے ساتھ کوئز دیں، فوری نتائج اور وضاحت پائیں</span>
+        </div>
+      </div>
+      <div class="app-feat">
+        <div class="app-dot"></div>
+        <div class="app-feat-text">
+          <span class="text-en">Track progress — completed lessons, quiz scores, overall standing</span>
+          <span class="text-ur">پیشرفت ٹریک کریں — مکمل سبق، کوئز اسکور، مجموعی حیثیت</span>
+        </div>
+      </div>
+      <div class="app-feat">
+        <div class="app-dot"></div>
+        <div class="app-feat-text">
+          <span class="text-en">Safe student accounts — parents can monitor their child's progress</span>
+          <span class="text-ur">محفوظ اکاؤنٹ — والدین بچے کی پیشرفت دیکھ سکتے ہیں</span>
+        </div>
+      </div>
+    </div>
+    <a href="https://massabfarooq.pythonanywhere.com/" target="_blank" class="app-btn">
+      <span class="inline-en">Visit Learning Portal →</span>
+      <span class="inline-ur">تعلیمی پورٹل دیکھیں ←</span>
+    </a>
+  </div>
+  <div>
+    <div class="app-mockup">
+      <div class="mockup-header">
+        <div class="mockup-avatar">👤</div>
+        <div>
+          <div class="mockup-name"><span class="inline-en">Student Dashboard</span><span class="inline-ur">طالب علم ڈیش بورڈ</span></div>
+          <div class="mockup-grade"><span class="inline-en">Grade 5 · 3 courses in progress</span><span class="inline-ur">گریڈ 5 · 3 کورسز جاری</span></div>
+        </div>
+      </div>
+      <div class="mockup-item">
+        <div class="mockup-ico">🔢</div>
+        <div>
+          <div class="mockup-c-name"><span class="inline-en">Mathematics</span><span class="inline-ur">ریاضی</span></div>
+          <div class="mockup-c-sub"><span class="inline-en">Chapter 4 — Fractions</span><span class="inline-ur">باب 4 — کسور</span></div>
+        </div>
+        <div class="mockup-badge">75%</div>
+      </div>
+      <div class="mockup-item">
+        <div class="mockup-ico">🔬</div>
+        <div>
+          <div class="mockup-c-name"><span class="inline-en">Science</span><span class="inline-ur">سائنس</span></div>
+          <div class="mockup-c-sub"><span class="inline-en">Chapter 2 — Plants</span><span class="inline-ur">باب 2 — پودے</span></div>
+        </div>
+        <div class="mockup-badge done"><span class="inline-en">Done</span><span class="inline-ur">مکمل</span></div>
+      </div>
+      <div class="mockup-item">
+        <div class="mockup-ico">🅰️</div>
+        <div>
+          <div class="mockup-c-name"><span class="inline-en">English</span><span class="inline-ur">انگریزی</span></div>
+          <div class="mockup-c-sub"><span class="inline-en">Chapter 3 — Story Writing</span><span class="inline-ur">باب 3 — کہانی لکھنا</span></div>
+        </div>
+        <div class="mockup-badge">42%</div>
+      </div>
+      <div class="mockup-item">
+        <div class="mockup-ico" style="font-family:'Amiri',serif;font-size:18px;color:rgba(255,255,255,0.7);">ا</div>
+        <div>
+          <div class="mockup-c-name"><span class="inline-en">Urdu</span><span class="inline-ur">اردو</span></div>
+          <div class="mockup-c-sub"><span class="inline-en">Qaida — Lesson 5</span><span class="inline-ur">قاعدہ — سبق 5</span></div>
+        </div>
+        <div class="mockup-badge"><span class="inline-en">Start</span><span class="inline-ur">شروع</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOCIAL ══ -->
+<section class="section social-section" id="connect">
+  <div class="section-label">
+    <span class="inline-en">Community</span>
+    <span class="inline-ur">کمیونٹی</span>
+  </div>
+  <h2 class="section-title">
+    <span class="inline-en">Stay <em>connected</em></span>
+    <span class="inline-ur">جڑے <em>رہیں</em></span>
+  </h2>
+  <p class="section-desc">
+    <span class="text-en">Follow MySchool Jhang for updates, lessons, and community news.</span>
+    <span class="text-ur">اپڈیٹس، اسباق اور کمیونٹی خبروں کے لیے مائی اسکول جھنگ فالو کریں۔</span>
+  </p>
+  <div class="social-grid" style="margin-top: 52px;">
+    <a href="https://www.facebook.com/MySchoolJhang/" target="_blank" class="social-card sc-fb reveal">
+      <div class="sc-icon">📘</div>
+      <div class="sc-name">Facebook</div>
+      <div class="sc-handle">@MySchoolJhang</div>
+      <div class="sc-stat">2,381</div>
+      <div class="sc-stat-lbl"><span class="inline-en">Page Likes</span><span class="inline-ur">پیج لائکس</span></div>
+    </a>
+    <a href="https://www.tiktok.com/@myschooljhang1" target="_blank" class="social-card sc-tiktok reveal">
+      <div class="sc-icon">🎵</div>
+      <div class="sc-name">TikTok</div>
+      <div class="sc-handle">@myschooljhang1</div>
+      <div class="sc-stat"><span class="inline-en">Follow</span><span class="inline-ur">فالو</span></div>
+      <div class="sc-stat-lbl"><span class="inline-en">Short Lessons &amp; Updates</span><span class="inline-ur">مختصر سبق و خبریں</span></div>
+    </a>
+    <a href="https://www.instagram.com/bestschooljhang" target="_blank" class="social-card sc-ig reveal">
+      <div class="sc-icon">📸</div>
+      <div class="sc-name">Instagram</div>
+      <div class="sc-handle">@bestschooljhang · @myschooljhang</div>
+      <div class="sc-stat"><span class="inline-en">Follow</span><span class="inline-ur">فالو</span></div>
+      <div class="sc-stat-lbl"><span class="inline-en">Photos &amp; Reels</span><span class="inline-ur">تصاویر و ریلز</span></div>
+    </a>
+  </div>
+  <a href="https://github.com/myschooljhang" target="_blank" class="github-row reveal" style="margin-top: 18px;">
+    <div style="font-size:30px;">🐙</div>
+    <div>
+      <div style="font-size:17px;font-weight:700;color:white;font-family:'Playfair Display',serif;">GitHub</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:3px;">
+        <span class="inline-en">github.com/myschooljhang · Open source, building in public</span>
+        <span class="inline-ur">گٹ ہب پر اوپن سورس پروجیکٹ</span>
+      </div>
+    </div>
+    <div class="github-row-right">→</div>
+  </a>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="section contact-section" id="contact">
+  <div class="section-label">
+    <span class="inline-en">Contact Us</span>
+    <span class="inline-ur">ہم سے رابطہ</span>
+  </div>
+  <h2 class="section-title">
+    <span class="inline-en">Find us in <em>Jhang</em></span>
+    <span class="inline-ur"><em>جھنگ</em> میں ہمیں ملیں</span>
+  </h2>
+  <p class="section-desc">
+    <span class="text-en">We're based in Satellite Town, Jhang. Reach out for admissions, enquiries, or to learn more about our programmes.</span>
+    <span class="text-ur">ہم سیٹلائٹ ٹاؤن، جھنگ میں ہیں۔ داخلے، سوالات یا پروگراموں کی معلومات کے لیے رابطہ کریں۔</span>
+  </p>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item reveal">
+        <div class="contact-icon-wrap">📍</div>
+        <div>
+          <div class="contact-label"><span class="inline-en">Address</span><span class="inline-ur">پتہ</span></div>
+          <div class="contact-value">
+            <span class="text-en">27 Lalazar, Satellite Town<br>Jhang, Punjab, Pakistan</span>
+            <span class="text-ur">27 للہ زار، سیٹلائٹ ٹاؤن<br>جھنگ، پنجاب، پاکستان</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon-wrap">📱</div>
+        <div>
+          <div class="contact-label"><span class="inline-en">Phone / WhatsApp</span><span class="inline-ur">فون / واٹس ایپ</span></div>
+          <div class="contact-value">
+            <a href="tel:+923001234567">+92 300 123 4567</a>
+          </div>
+          <div class="contact-note">
+            <span class="inline-en">Available Mon–Sat, 9am–5pm</span>
+            <span class="inline-ur">پیر تا ہفتہ، صبح 9 تا شام 5</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon-wrap">🌐</div>
+        <div>
+          <div class="contact-label"><span class="inline-en">Learning Portal</span><span class="inline-ur">تعلیمی پورٹل</span></div>
+          <div class="contact-value">
+            <a href="https://massabfarooq.pythonanywhere.com/" target="_blank">massabfarooq.pythonanywhere.com</a>
+          </div>
+          <div class="contact-note">
+            <span class="inline-en">Register free — open to all students</span>
+            <span class="inline-ur">مفت رجسٹریشن — تمام طلبا کے لیے</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon-wrap">📘</div>
+        <div>
+          <div class="contact-label"><span class="inline-en">Facebook</span><span class="inline-ur">فیسبوک</span></div>
+          <div class="contact-value">
+            <a href="https://www.facebook.com/MySchoolJhang/" target="_blank">facebook.com/MySchoolJhang</a>
+          </div>
+          <div class="contact-note">
+            <span class="inline-en">For announcements &amp; quick queries</span>
+            <span class="inline-ur">اعلانات اور فوری سوالات کے لیے</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-map-card reveal">
+      <div class="contact-map-top">
+        <div class="contact-map-lbl">
+          <span class="inline-en">Our Location</span>
+          <span class="inline-ur">ہماری جگہ</span>
+        </div>
+        <div class="contact-map-title">
+          <span class="text-en">MySchool Jhang</span>
+          <span class="text-ur">مائی اسکول جھنگ</span>
+        </div>
+        <div class="contact-map-addr">
+          <span class="text-en">27 Lalazar, Satellite Town<br>Jhang, Punjab — Pakistan 🇵🇰</span>
+          <span class="text-ur">27 للہ زار، سیٹلائٹ ٹاؤن<br>جھنگ، پنجاب — پاکستان 🇵🇰</span>
+        </div>
+      </div>
+      <div class="contact-map-visual">
+        <div class="map-pin">📍</div>
+      </div>
+      <div class="contact-map-bottom">
+        <a href="https://www.google.com/maps/search/27+Lalazar+Satellite+Town+Jhang+Pakistan" target="_blank">
+          <span class="inline-en">Open in Google Maps →</span>
+          <span class="inline-ur">گوگل میپس میں کھولیں ←</span>
+        </a>
+        <span>Jhang, Punjab</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BAND ══ -->
+<div class="cta-band">
+  <div>
+    <div class="cta-band-lbl">
+      <span class="inline-en">Free for every student</span>
+      <span class="inline-ur">ہر طالب علم کے لیے مفت</span>
+    </div>
+    <div class="cta-band-title">
+      <span class="text-en">Ready to start <em>learning?</em></span>
+      <span class="text-ur">سیکھنا شروع کرنے کے لیے <em>تیار؟</em></span>
+    </div>
+  </div>
+  <div class="cta-btns">
+    <a href="https://massabfarooq.pythonanywhere.com/register/" target="_blank" class="cta-btn-main">
+      <span class="inline-en">Create Free Account →</span>
+      <span class="inline-ur">مفت اکاؤنٹ بنائیں ←</span>
+    </a>
+    <a href="https://massabfarooq.pythonanywhere.com/login/" target="_blank" class="cta-btn-sec">
+      <span class="inline-en">I have an account</span>
+      <span class="inline-ur">میرا اکاؤنٹ ہے</span>
+    </a>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <div class="footer-logo-mark">م</div>
+        <div>
+          <div class="footer-logo-name"><span class="inline-en">MySchool Jhang</span><span class="inline-ur">مائی اسکول جھنگ</span></div>
+          <div class="footer-logo-sub">Jhang, Pakistan</div>
+        </div>
+      </div>
+      <p class="footer-tagline">
+        <span class="text-en">Free online education for Grade 1–8. A Massab Farooq Initiative. Passionate learners, shaping the future. 🇵🇰</span>
+        <span class="text-ur">گریڈ 1 تا 8 کے لیے مفت آنلائن تعلیم۔ مصعب فاروق کا ادارہ۔ پرجوش سیکھنے والے، مستقبل کی تشکیل۔ 🇵🇰</span>
+      </p>
+      <div class="footer-addr">
+        <span class="text-en">📍 27 Lalazar, Satellite Town, Jhang<br>Punjab, Pakistan</span>
+        <span class="text-ur">📍 27 للہ زار، سیٹلائٹ ٹاؤن، جھنگ<br>پنجاب، پاکستان</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/MySchoolJhang/" target="_blank" class="footer-soc-btn" title="Facebook">f</a>
+        <a href="https://www.tiktok.com/@myschooljhang1" target="_blank" class="footer-soc-btn" title="TikTok">t</a>
+        <a href="https://www.instagram.com/bestschooljhang" target="_blank" class="footer-soc-btn" title="Instagram">ig</a>
+        <a href="https://github.com/myschooljhang" target="_blank" class="footer-soc-btn" title="GitHub">gh</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-h"><span class="inline-en">Learning</span><span class="inline-ur">تعلیم</span></div>
+      <ul class="footer-links">
+        <li><a href="https://massabfarooq.pythonanywhere.com/" target="_blank"><span class="inline-en">Learning Portal</span><span class="inline-ur">تعلیمی پورٹل</span></a></li>
+        <li><a href="https://massabfarooq.pythonanywhere.com/register/" target="_blank"><span class="inline-en">Register Free</span><span class="inline-ur">مفت رجسٹر</span></a></li>
+        <li><a href="https://massabfarooq.pythonanywhere.com/login/" target="_blank"><span class="inline-en">Student Login</span><span class="inline-ur">طالب علم لاگ ان</span></a></li>
+        <li><a href="#subjects"><span class="inline-en">All Subjects</span><span class="inline-ur">تمام مضامین</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-h"><span class="inline-en">Subjects</span><span class="inline-ur">مضامین</span></div>
+      <ul class="footer-links">
+        <li><a href="#"><span class="inline-en">Mathematics</span><span class="inline-ur">ریاضی</span></a></li>
+        <li><a href="#"><span class="inline-en">Science</span><span class="inline-ur">سائنس</span></a></li>
+        <li><a href="#"><span class="inline-en">English</span><span class="inline-ur">انگریزی</span></a></li>
+        <li><a href="#"><span class="inline-en">Urdu</span><span class="inline-ur">اردو</span></a></li>
+        <li><a href="#"><span class="inline-en">Islamiat</span><span class="inline-ur">اسلامیات</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-h"><span class="inline-en">Connect</span><span class="inline-ur">رابطہ</span></div>
+      <ul class="footer-links">
+        <li><a href="#contact"><span class="inline-en">Contact Us</span><span class="inline-ur">ہم سے رابطہ</span></a></li>
+        <li><a href="https://www.facebook.com/MySchoolJhang/" target="_blank">Facebook</a></li>
+        <li><a href="https://www.tiktok.com/@myschooljhang1" target="_blank">TikTok</a></li>
+        <li><a href="https://www.instagram.com/bestschooljhang" target="_blank">Instagram</a></li>
+        <li><a href="https://github.com/myschooljhang" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">
+      © 2026 MySchool Jhang · A <strong>Massab Farooq</strong> Initiative · <span class="inline-en">Free Education for All</span><span class="inline-ur">سب کے لیے مفت تعلیم</span>
+    </div>
+    <div class="footer-copy">
+      <span class="inline-en">Built with ❤️ for Jhang</span>
+      <span class="inline-ur">جھنگ کے لیے محبت سے بنایا ❤️</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Language Toggle ── */
+function setLang(lang) {
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = lang === 'ur' ? 'rtl' : 'ltr';
+
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('#btn-en, #btn-en-m').forEach(b => { if(lang==='en') b.classList.add('active'); });
+  document.querySelectorAll('#btn-ur, #btn-ur-m').forEach(b => { if(lang==='ur') b.classList.add('active'); });
+
+  localStorage.setItem('msj-lang', lang);
+}
+// Restore saved language
+const saved = localStorage.getItem('msj-lang');
+if (saved) setLang(saved);
+
+/* ── Mobile Menu ── */
+function toggleMenu() {
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('open');
+}
+
+/* ── Nav scroll shadow ── */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* ── Scroll Reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 70);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
